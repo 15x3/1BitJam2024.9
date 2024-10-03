@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://brhp4urdiiyam"]
+
+[ext_resource type="Shader" path="res://shaders/ColorRectDitherTest.gdshader" id="1_uw23d"]
+
+[sub_resource type="Gradient" id="Gradient_355pm"]
+colors = PackedColorArray(0, 0, 0, 1, 0.980392, 0.741176, 0.247059, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ucrbw"]
+gradient = SubResource("Gradient_355pm")
+
+[resource]
+shader = ExtResource("1_uw23d")
+shader_parameter/quantize_size = 0.0
+shader_parameter/handle_scale = false
+shader_parameter/handle_subpixels = true
+shader_parameter/dither_enabled = true
+shader_parameter/bayer_pattern = 1.0
+shader_parameter/divisions = 5.0
+shader_parameter/contrast = 1.0
+shader_parameter/shift = 4.75e-08
+shader_parameter/grayscale = false
+shader_parameter/use_palette = true
+shader_parameter/palette = SubResource("GradientTexture1D_ucrbw")
