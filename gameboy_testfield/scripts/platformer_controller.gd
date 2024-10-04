@@ -75,7 +75,7 @@ var _jump_duration: float = DEFAULT_JUMP_DURATION
 @export var falling_gravity_multiplier = 1.5
 ## Amount of jumps allowed before needing to touch the ground again. Set to 2 for double jump.
 @export var max_jump_amount = 1
-@export var max_acceleration = 10000
+@export var max_acceleration = 3000
 @export var friction = 20
 @export var can_hold_jump : bool = false
 ## You can still jump this many seconds after falling off a ledge.
@@ -178,6 +178,9 @@ func _physics_process(delta):
 	velocity.x *= 1 / (1 + (delta * friction))
 	velocity += acc * delta
 	
+	# 对速度进行取整，确保每次移动的增量为整数
+	#velocity.x = round(velocity.x)
+	#velocity.y = round(velocity.y)
 	
 	_was_on_ground = is_feet_on_ground()
 	move_and_slide()

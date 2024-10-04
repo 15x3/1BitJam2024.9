@@ -28,3 +28,26 @@ func generate_platforms(tilemap:TileMapLayer,x_range:Vector2,y_range:Vector2,pla
 		# 将平台放置在TileMap的指定位置
 		for i in range(platform_length):
 			tilemap.set_cell(Vector2(random_x+i,y),0,Vector2(18,17),0)
+
+
+#func gengrate_platforms_v2(pathfollow2D:PathFollow2D,range:Vector2,platform:PackedScene):
+	## 我就不设置检测了，反正是给自己用的
+	#var platform_set = platform.instantiate()
+	#platform_set.set_cell(Vector2(1,0),0,Vector2(18,17),0)
+	#pathfollow2D.progress_ratio = randf()
+	#pass
+
+
+func gengrate_platforms_v2(mob_scene:PackedScene,mob_spawn_location:PathFollow2D):
+	if not mob_scene:
+		print("Mob scene is invalid!")
+		return
+	# Create a new instance of the Mob scene.
+	var mob = mob_scene.instantiate()
+	# Choose a random location on Path2D.
+	mob_spawn_location.progress_ratio = randf()
+	mob.position = mob_spawn_location.position
+	print("Mob position:", mob_spawn_location.position)
+	#mob.linear_velocity = Vector2(1.0, 0.0)
+	# Spawn the mob by adding it to the Main scene.
+	add_child(mob)
