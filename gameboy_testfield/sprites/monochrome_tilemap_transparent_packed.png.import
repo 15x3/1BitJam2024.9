@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bop2p2kkfum7v"
-path="res://.godot/imported/speed_progress_full.png-07ab4d768216114393bfed61709513e6.ctex"
+uid="uid://jshdmu5420nq"
+path="res://.godot/imported/monochrome_tilemap_transparent_packed.png-a3e59eb8157122c49a1bfd588dbee3bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/speed_progress_full.png"
-dest_files=["res://.godot/imported/speed_progress_full.png-07ab4d768216114393bfed61709513e6.ctex"]
+source_file="res://sprites/monochrome_tilemap_transparent_packed.png"
+dest_files=["res://.godot/imported/monochrome_tilemap_transparent_packed.png-a3e59eb8157122c49a1bfd588dbee3bf.ctex"]
 
 [params]
 
@@ -23,9 +23,9 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1
-roughness/mode=1
+roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

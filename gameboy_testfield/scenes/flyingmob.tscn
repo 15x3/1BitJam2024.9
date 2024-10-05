@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://drkn0ddrxj1gn"]
+
+[ext_resource type="Texture2D" uid="uid://jshdmu5420nq" path="res://sprites/monochrome_tilemap_transparent_packed.png" id="1_auxu4"]
+[ext_resource type="Script" path="res://scripts/flyingmob.gd" id="1_jsa50"]
+[ext_resource type="PackedScene" uid="uid://bnpjk6uqqpx8x" path="res://scenes/EnemyBullet.tscn" id="2_dsjs4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a7wo7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kycjk"]
+atlas = ExtResource("1_auxu4")
+region = Rect2(0, 305, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkfu5"]
+atlas = ExtResource("1_auxu4")
+region = Rect2(16, 305, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_po0vb"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"died",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kycjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkfu5")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}]
+
+[node name="Flyingmob" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_jsa50")
+bullet = ExtResource("2_dsjs4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a7wo7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_po0vb")
+animation = &"flying"
+frame_progress = 0.9809
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

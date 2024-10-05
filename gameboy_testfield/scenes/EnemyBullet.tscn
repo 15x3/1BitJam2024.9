@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnpjk6uqqpx8x"]
+
+[ext_resource type="Script" path="res://scripts/enemy_bullet.gd" id="1_3s8ft"]
+[ext_resource type="Texture2D" uid="uid://jshdmu5420nq" path="res://sprites/monochrome_tilemap_transparent_packed.png" id="1_cfsob"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncgqd"]
+atlas = ExtResource("1_cfsob")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gji6v"]
+radius = 4.0
+height = 8.0
+
+[node name="EnemyBullet" type="RigidBody2D"]
+collision_mask = 3
+gravity_scale = 0.0
+script = ExtResource("1_3s8ft")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_ncgqd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_gji6v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

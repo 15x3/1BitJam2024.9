@@ -13,6 +13,7 @@ signal hit_ground()
 @export var input_right : String = "move_right"
 ## Name of input action to jump.
 @export var input_jump : String = "jump"
+@export var animated_sprite : AnimatedSprite2D
 
 
 const DEFAULT_MAX_JUMP_HEIGHT = 150
@@ -136,9 +137,13 @@ func _ready():
 func _input(_event):
 	acc.x = 0
 	if Input.is_action_pressed(input_left):
+		animated_sprite.play("walking")
+		animated_sprite.flip_h = true
 		acc.x = -max_acceleration
 	
 	if Input.is_action_pressed(input_right):
+		animated_sprite.play("walking")
+		animated_sprite.flip_h = false
 		acc.x = max_acceleration
 	
 	if Input.is_action_just_pressed(input_jump):
@@ -149,6 +154,9 @@ func _input(_event):
 		
 	if Input.is_action_just_released(input_jump):
 		holding_jump = false
+	
+	if acc.x == 0:
+		animated_sprite.stop()
 
 
 func _physics_process(delta):
