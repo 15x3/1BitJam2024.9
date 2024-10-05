@@ -29,14 +29,16 @@ func _process(delta: float) -> void:
 
 func _on_mob_timer_timeout() -> void:
 	#mapgenerator.gengrate_platforms_v2(platform,pathfollow)
+	var platform_length = randi_range(1,3)
 	if not platform:
 		print("Mob scene is invalid!")
 		return
 	# Create a new instance of the Mob scene.
 	var mob = platform.instantiate()
 	# Choose a random location on Path2D.
-	pathfollow.progress_ratio = randf()
+	pathfollow.progress_ratio = randf_range(0.25,0.75)
 	mob.position = pathfollow.position
+	mob.draw_platform(platform_length,Vector2(18,17))
 	#print("Mob position:", pathfollow.position)
 	#mob.linear_velocity = Vector2(1.0, 0.0)
 	# Spawn the mob by adding it to the Main scene.

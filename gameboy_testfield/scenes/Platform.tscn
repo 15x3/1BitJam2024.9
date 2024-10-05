@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=4 uid="uid://cry0ik0k7kv3m"]
+[gd_scene load_steps=4 format=3 uid="uid://cry0ik0k7kv3m"]
 
 [ext_resource type="TileSet" uid="uid://c7l00m34vl2fu" path="res://sprites/kenney_1bit_tile_set.tres" id="1_a7ml2"]
 [ext_resource type="Script" path="res://scenes/platform.gd" id="2_oxc4c"]
@@ -13,5 +13,4 @@ script = ExtResource("2_oxc4c")
 shape = SubResource("RectangleShape2D_el0km")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD//wAAAAALAAkAAAAAAAAAAAALAAkAAAABAAAAAAALAAkAAAACAAAAAAALAAkAAAD+/wAAAAALAAkAAAD9/wAAAAALAAkAAAA=")
 tile_set = ExtResource("1_a7ml2")

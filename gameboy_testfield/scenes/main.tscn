@@ -53,8 +53,8 @@ scale = Vector2(2, 2)
 curve = SubResource("Curve2D_17i63")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="PlatformSpawn"]
-position = Vector2(160.004, 400)
-progress = 96.0
+position = Vector2(109.594, 400)
+progress = 45.6
 
 [node name="World" type="Node2D" parent="."]
 script = ExtResource("2_8mkx0")
