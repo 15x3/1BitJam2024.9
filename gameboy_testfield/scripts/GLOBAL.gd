@@ -9,7 +9,14 @@ enum DIFFICULTY {
 	NORMAL,
 	HARD
 }
-enum COLORMODE {
-	
-}
+#enum COLORMODE {
+	#NOKIA,
+	#STARCOM
+#}
 var MOVEMENT_ENABLE = true
+var COLORMODE = "NOKIA"
+var ON_CREDITS = false
+var GAME_STARTED = false
+var HI_SCORE = 10000
+var SCORE = 0
+var INVINCIBLE = false

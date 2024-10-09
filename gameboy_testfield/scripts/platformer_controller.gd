@@ -4,8 +4,9 @@ class_name PlatformerController2D
 
 signal jumped(is_ground_jump: bool)
 signal hit_ground()
-
-
+signal damaged
+signal died
+@onready var life = 4
 # Set these to the name of your action (in the Input Map)
 ## Name of input action to move left.
 @export var input_left : String = "move_left"
@@ -132,6 +133,8 @@ func _ready():
 		add_child(jump_buffer_timer)
 		jump_buffer_timer.wait_time = jump_buffer
 		jump_buffer_timer.one_shot = true
+		
+	add_to_group("player")
 
 
 func _input(_event):
@@ -330,3 +333,26 @@ func calculate_friction(time_to_max):
 ## Formula from [url]https://www.reddit.com/r/gamedev/comments/bdbery/comment/ekxw9g4/?utm_source=share&utm_medium=web2x&context=3[/url]
 func calculate_speed(p_max_speed, p_friction):
 	return (p_max_speed / p_friction) - p_max_speed
+
+
+func fall_detection():
+	if self.position.y < 0 or self.position.y > 300 :
+		self.position = Vector2(160.0,120.0)
+		if Global.INVINCIBLE == true:
+			emit_signal("damaged")
+		pass
+
+
+func _on_damaged() -> void:
+	life -= 1
+	$"../../GUI/HeartProgressBar2".value = life * 25
+	if life < 0 :
+		emit_signal("died")
+		queue_free()
+	Global.INVINCIBLE = true
+	await get_tree().create_timer(2).timeout
+	Global.INVINCIBLE = false
+	pass # Replace with function body.
+
+func _process(delta: float) -> void:
+	fall_detection()

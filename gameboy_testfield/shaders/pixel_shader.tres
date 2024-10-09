@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://brhp4urdiiyam"]
 
 [ext_resource type="Shader" path="res://shaders/ColorRectDitherTest.gdshader" id="1_uw23d"]
-[ext_resource type="Texture2D" uid="uid://cnfcrdw6jpr2e" path="res://shaders/palette/starcom_texture_1d.tres" id="2_1ayox"]
+[ext_resource type="Texture2D" uid="uid://30g3otsxu5h5" path="res://shaders/palette/nokia_texture_1d.tres" id="2_tguyl"]
 
 [resource]
 shader = ExtResource("1_uw23d")
@@ -15,4 +15,4 @@ shader_parameter/contrast = 1.1
 shader_parameter/shift = 4.75e-08
 shader_parameter/grayscale = false
 shader_parameter/use_palette = true
-shader_parameter/palette = ExtResource("2_1ayox")
+shader_parameter/palette = ExtResource("2_tguyl")

@@ -11,6 +11,12 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_body_entered(body: Node) -> void:
+	if body.is_in_group("player"):
+		if Global.INVINCIBLE == false:
+			body.emit_signal("damaged")
+			pass
+		print("hit")
+		pass
 	queue_free()
 	pass # Replace with function body.
 

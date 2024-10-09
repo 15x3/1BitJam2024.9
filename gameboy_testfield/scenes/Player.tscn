@@ -91,3 +91,5 @@ shape = SubResource("CircleShape2D_jx6ad")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_a7wp1")
 animation = &"walking"
+
+[connection signal="damaged" from="." to="." method="_on_damaged"]

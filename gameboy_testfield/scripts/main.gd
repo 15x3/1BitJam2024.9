@@ -3,6 +3,7 @@ extends Node2D
 @onready var tilemap = $World/TileMapLayer
 @onready var pathfollow = $PlatformSpawn/PathFollow2D
 @export var platform : PackedScene
+@export var flying : PackedScene
 var x_range = Vector2(4, 15)
 var y_range = Vector2(0, 200)
 var platform_interval = 3
@@ -12,6 +13,8 @@ var progress_time = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#mapgenerator.generate_platforms(tilemap,x_range,y_range,platform_interval,Vector2(3,10))
+	await get_tree().create_timer(3).timeout
+	$Camera/Camera2D.position.y += 288
 	pass # Replace with function body.
 
 
@@ -28,10 +31,12 @@ func _process(delta: float) -> void:
 
 
 func _on_mob_timer_timeout() -> void:
+	if Global.GAME_STARTED == false:
+		return
 	#mapgenerator.gengrate_platforms_v2(platform,pathfollow)
 	var platform_length = randi_range(1,3)
 	if not platform:
-		print("Mob scene is invalid!")
+		print("platform scene is invalid!")
 		return
 	# Create a new instance of the Mob scene.
 	var mob = platform.instantiate()
@@ -43,4 +48,22 @@ func _on_mob_timer_timeout() -> void:
 	#mob.linear_velocity = Vector2(1.0, 0.0)
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
+		
+	pass # Replace with function body.
+
+
+func _on_flying_timer_timeout() -> void:
+	if Global.GAME_STARTED == false:
+		return
+	var mob = flying.instantiate()
+	pathfollow.progress_ratio = randf_range(0.25,0.75)
+	mob.position = pathfollow.position
+	add_child(mob)
+	pass # Replace with function body.
+
+
+func _on_player_died() -> void:
+	$GUI/GameOver.visible = true
+	await get_tree().create_timer(5).timeout
+	get_tree().reload_current_scene()
 	pass # Replace with function body.

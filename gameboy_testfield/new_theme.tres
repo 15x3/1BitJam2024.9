@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bs5flrp8xi2qb"]
+
+[ext_resource type="FontFile" uid="uid://dtcnt4p1so4kt" path="res://fonts/VonwaonBitmap-16px.ttf" id="1_qoxa0"]
+[ext_resource type="Texture2D" uid="uid://jshdmu5420nq" path="res://sprites/monochrome_tilemap_transparent_packed.png" id="2_wuja2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t5ne0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0207"]
+atlas = ExtResource("2_wuja2")
+region = Rect2(272, 272, 48, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jcq0d"]
+texture = SubResource("AtlasTexture_y0207")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[resource]
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_qoxa0")
+Button/styles/disabled = SubResource("StyleBoxEmpty_t5ne0")
+Button/styles/hover = SubResource("StyleBoxTexture_jcq0d")
