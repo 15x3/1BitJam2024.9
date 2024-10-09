@@ -13,6 +13,7 @@ func _ready() -> void:
 		$StartScreen1/StartButton,
 		$StartScreen1/StartButton2
 	]
+	update_score()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,8 +22,9 @@ func _process(delta: float) -> void:
 	#$SpeedProgressBar.value = player.acc.length()
 	if Global.GAME_STARTED == true:
 		Global.SCORE += 1
+		update_score()
 		return
-	update_score()
+
 	if Input.is_action_just_pressed("ui_up"):
 		current_index = (current_index - 1 + buttons.size()) % buttons.size()
 		_update_hover()

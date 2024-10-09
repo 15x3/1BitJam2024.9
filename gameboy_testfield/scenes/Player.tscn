@@ -1,7 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8g56a6iwqwj4"]
+[gd_scene load_steps=15 format=3 uid="uid://b8g56a6iwqwj4"]
 
 [ext_resource type="Script" path="res://scripts/platformer_controller.gd" id="1_lf8bn"]
 [ext_resource type="Texture2D" uid="uid://jshdmu5420nq" path="res://sprites/monochrome_tilemap_transparent_packed.png" id="2_p72o7"]
+[ext_resource type="AudioStream" uid="uid://cqmdcckaw8ds0" path="res://audios/SFX_-_jump_03.ogg" id="3_xff6h"]
+[ext_resource type="AudioStream" uid="uid://bnn8ydcq6qqow" path="res://audios/SFX_-_negative_07.ogg" id="4_pf522"]
+[ext_resource type="AudioStream" uid="uid://b8si6l02eeyxx" path="res://audios/SFX_-_negative_01.ogg" id="5_mxe6o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jx6ad"]
 radius = 8.0
@@ -91,5 +94,14 @@ shape = SubResource("CircleShape2D_jx6ad")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_a7wp1")
 animation = &"walking"
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xff6h")
+
+[node name="Negative" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pf522")
+
+[node name="Cirtical" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mxe6o")
 
 [connection signal="damaged" from="." to="." method="_on_damaged"]

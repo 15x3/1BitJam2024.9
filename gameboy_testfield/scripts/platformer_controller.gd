@@ -257,10 +257,12 @@ func is_feet_on_ground():
 
 ## Perform a ground jump, or a double jump if the character is in the air.
 func jump():
-	if can_double_jump():
-		double_jump()
-	else:
-		ground_jump()
+	if Global.GAME_STARTED == true:
+		$Jump.play()
+		if can_double_jump():
+			double_jump()
+		else:
+			ground_jump()
 
 
 ## Perform a double jump without checking if the player is able to.
@@ -338,20 +340,28 @@ func calculate_speed(p_max_speed, p_friction):
 func fall_detection():
 	if self.position.y < 0 or self.position.y > 300 :
 		self.position = Vector2(160.0,120.0)
-		if Global.INVINCIBLE == true:
+		if Global.INVINCIBLE == false:
 			emit_signal("damaged")
-		pass
 
 
 func _on_damaged() -> void:
+	if Global.INVINCIBLE == true:
+		return
 	life -= 1
 	$"../../GUI/HeartProgressBar2".value = life * 25
+	if life > 1:
+		$Negative.play()
+	else:
+		$Cirtical.play()
+	pass
 	if life < 0 :
 		emit_signal("died")
+		Global.GAME_STARTED = false
 		queue_free()
 	Global.INVINCIBLE = true
 	await get_tree().create_timer(2).timeout
 	Global.INVINCIBLE = false
+
 	pass # Replace with function body.
 
 func _process(delta: float) -> void:
